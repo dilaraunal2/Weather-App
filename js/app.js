@@ -1,6 +1,6 @@
 // Hava Durumu Uygulaması
 
- const API_KEY = '1efb86ccac8b63025cca1bd1e3b92dc3';
+ const API_KEY = CONFIG.API_KEY;
  const API_URL = 'https://api.openweathermap.org/data/2.5/weather';
 
 
