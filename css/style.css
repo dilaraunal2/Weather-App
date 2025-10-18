@@ -203,3 +203,111 @@ header i {
         gap: 15px;
     }
 }
+/* Hava Durumuna Göre Arka Planlar */
+
+/* Varsayılan (Mevcut mor gradient) */
+body.default-weather {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+}
+
+/* Açık Hava (Güneşli) */
+body.clear-weather {
+    background: linear-gradient(135deg, #FFA726 0%, #FB8C00 100%);
+    animation: sunny 3s ease-in-out infinite;
+}
+
+@keyframes sunny {
+    0%, 100% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+}
+
+/* Bulutlu */
+body.cloudy-weather {
+    background: linear-gradient(135deg, #78909C 0%, #546E7A 100%);
+}
+
+/* Yağmurlu */
+body.rainy-weather {
+    background: linear-gradient(135deg, #424242 0%, #263238 100%);
+    position: relative;
+}
+
+/* Karlı */
+body.snowy-weather {
+    background: linear-gradient(135deg, #E3F2FD 0%, #90CAF9 100%);
+}
+
+/* Fırtınalı */
+body.stormy-weather {
+    background: linear-gradient(135deg, #37474F 0%, #263238 100%);
+}
+
+/* Sisli */
+body.misty-weather {
+    background: linear-gradient(135deg, #B0BEC5 0%, #78909C 100%);
+}
+
+/* İkon Animasyonları */
+.weather-icon i {
+    animation: iconFloat 3s ease-in-out infinite;
+}
+
+@keyframes iconFloat {
+    0%, 100% {
+        transform: translateY(0px) rotate(0deg);
+    }
+    25% {
+        transform: translateY(-10px) rotate(5deg);
+    }
+    75% {
+        transform: translateY(-5px) rotate(-5deg);
+    }
+}
+
+/* Güneş ikonu için özel animasyon */
+.fa-sun {
+    animation: rotate 20s linear infinite !important;
+    color: #FFA726;
+}
+
+@keyframes rotate {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+/* Yağmur ikonu */
+.fa-cloud-rain {
+    color: #42A5F5;
+}
+
+/* Kar ikonu */
+.fa-snowflake {
+    color: #90CAF9;
+    animation: snowfall 3s ease-in-out infinite !important;
+}
+
+@keyframes snowfall {
+    0%, 100% { transform: translateY(0px) rotate(0deg); }
+    50% { transform: translateY(10px) rotate(180deg); }
+}
+
+/* Fırtına ikonu */
+.fa-bolt {
+    color: #FDD835;
+    animation: flash 1.5s ease-in-out infinite !important;
+}
+
+@keyframes flash {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.3; }
+}
+
+/* Bulut ikonu */
+.fa-cloud {
+    color: #90A4AE;
+}
+
+/* Sis ikonu */
+.fa-smog {
+    color: #BDBDBD;
+}

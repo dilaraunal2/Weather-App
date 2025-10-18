@@ -87,10 +87,18 @@ function displayWeatherData(data) {
     // Hissedilen sıcaklık
     feelsLikeValue.textContent = Math.round(data.main.feels_like) + '°C';
     
+    const weatherId = data.weather[0].id;
+    const weatherMain = data.weather[0].main;
+    
+    // İkon ve arka plan değiştir
+    updateWeatherIcon(weatherId, weatherMain);
+    updateBackground(weatherMain);
+    
     // Loading'i kaldır
     hideLoading();
     
     console.log('📺 Veriler ekrana yazdırıldı!');
+    console.log('🎨 İkon ve arka plan güncellendi!');
 }
 
 // Loading Durumu Göster
@@ -114,7 +122,82 @@ function showError(message) {
     hideLoading();
     alert(message);
 }
+// Hava Durumuna Göre İkon Değiştir
+function updateWeatherIcon(weatherId, weatherMain) {
+    let iconClass = '';
+    
+    // Hava durumu koduna göre ikon seç
+    if (weatherId >= 200 && weatherId < 300) {
+        // Fırtına
+        iconClass = 'fas fa-bolt';
+    } else if (weatherId >= 300 && weatherId < 600) {
+        // Yağmur
+        iconClass = 'fas fa-cloud-rain';
+    } else if (weatherId >= 600 && weatherId < 700) {
+        // Kar
+        iconClass = 'fas fa-snowflake';
+    } else if (weatherId >= 700 && weatherId < 800) {
+        // Sis, duman
+        iconClass = 'fas fa-smog';
+    } else if (weatherId === 800) {
+        // Açık hava
+        iconClass = 'fas fa-sun';
+    } else if (weatherId > 800) {
+        // Bulutlu
+        iconClass = 'fas fa-cloud';
+    } else {
+        // Varsayılan
+        iconClass = 'fas fa-cloud-sun';
+    }
+    
+    // İkonu değiştir
+    weatherIcon.className = iconClass + ' fa-5x';
+    
+    // Animasyon ekle
+    weatherIcon.style.animation = 'none';
+    setTimeout(() => {
+        weatherIcon.style.animation = '';
+    }, 10);
+    
+    console.log('🎨 İkon güncellendi:', iconClass);
+}
 
+// Hava Durumuna Göre Arka Plan Değiştir
+function updateBackground(weatherMain) {
+    const body = document.body;
+    
+    // Eski sınıfları temizle
+    body.className = '';
+    
+    // Hava durumuna göre sınıf ekle
+    switch(weatherMain.toLowerCase()) {
+        case 'clear':
+            body.classList.add('clear-weather');
+            break;
+        case 'clouds':
+            body.classList.add('cloudy-weather');
+            break;
+        case 'rain':
+        case 'drizzle':
+            body.classList.add('rainy-weather');
+            break;
+        case 'snow':
+            body.classList.add('snowy-weather');
+            break;
+        case 'thunderstorm':
+            body.classList.add('stormy-weather');
+            break;
+        case 'mist':
+        case 'fog':
+        case 'haze':
+            body.classList.add('misty-weather');
+            break;
+        default:
+            body.classList.add('default-weather');
+    }
+    
+    console.log('🎨 Arka plan güncellendi:', weatherMain);
+}
 // Sayfa yüklendiğinde
 console.log('🌦️ Hava Durumu Uygulaması hazır!');
-onsole.log('Bir şehir arayın ve veriler ekranda görünsün! 🎉');
+console.log('Bir şehir arayın ve veriler ekranda görünsün! 🎉');
