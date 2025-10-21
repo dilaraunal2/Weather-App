@@ -108,8 +108,3 @@ Bu proje, aşağıdaki konuları pekiştirmek için idealdir:
 
 Bu proje MIT lisansı altında paylaşılmıştır.
 Serbestçe kopyalayabilir, geliştirebilir ve paylaşabilirsiniz.
-
-
-
-İstersen ben bunu **Markdown biçiminde dosya olarak (README.md)** oluşturup sana indirebileceğin şekilde de verebilirim.
-Hazırlay
